@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Max Schwarz — maxschwarz.digital</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Desktop-Fläche, randlos (keine Menüleiste): Icons setzt app.js hier ein. -->
+<main id="desktop" class="desktop" aria-label="Desktop">
+  <div id="icons" class="icons"></div>
+</main>
+
+<!-- Fenster-Ebene -->
+<div id="windows" class="windows"></div>
+
+<!-- Dock. Inhalt und Grafiken kommen vollständig aus assets/icons/icons.json
+     und werden zur Laufzeit von app.js eingesetzt — hier steht bewusst
+     nichts fest verdrahtet. -->
+<nav class="dock" id="dock" aria-label="Dock"></nav>
+
+<!-- Statusmeldungen für Screenreader (Fenster geöffnet/geschlossen). -->
+<div id="live" class="sr-only" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>

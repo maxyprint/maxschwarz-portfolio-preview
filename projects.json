@@ -1,0 +1,1139 @@
+{
+  "projects": [
+    {
+      "slug": "strunk",
+      "title": "Strunk",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/strunk/post-links-preparty-h1.webp",
+          "thumb": "assets/strunk/post-links-preparty-h1-thumb.webp",
+          "name": "Post links Preparty H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/post-links-preparty-wilderei-h1.webp",
+          "thumb": "assets/strunk/post-links-preparty-wilderei-h1-thumb.webp",
+          "name": "Post links Preparty Wilderei H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/post-links-strunk-ballsaal.webp",
+          "thumb": "assets/strunk/post-links-strunk-ballsaal-thumb.webp",
+          "name": "Post links STRUNK Ballsaal.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/post-links-strunk-fausterei.webp",
+          "thumb": "assets/strunk/post-links-strunk-fausterei-thumb.webp",
+          "name": "Post links STRUNK Fausterei.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/post-links-strunk.webp",
+          "thumb": "assets/strunk/post-links-strunk-thumb.webp",
+          "name": "Post links STRUNK.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/post-mitte-strunk.webp",
+          "thumb": "assets/strunk/post-mitte-strunk-thumb.webp",
+          "name": "Post Mitte STRUNK.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 1,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/post-rechts-strunk.webp",
+          "thumb": "assets/strunk/post-rechts-strunk-thumb.webp",
+          "name": "Post Rechts STRUNK.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 2,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/tec9djgraphic-h1.webp",
+          "thumb": "assets/strunk/tec9djgraphic-h1-thumb.webp",
+          "name": "Tec9DJGraphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Post"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/story-promo-strunk.webp",
+          "thumb": "assets/strunk/story-promo-strunk-thumb.webp",
+          "name": "Story Promo STRUNK.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "Story"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/harderer-dj-graphic-h1.webp",
+          "thumb": "assets/strunk/harderer-dj-graphic-h1-thumb.webp",
+          "name": "HARDERER Dj Graphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/jacuzi-dj-graphic-h1.webp",
+          "thumb": "assets/strunk/jacuzi-dj-graphic-h1-thumb.webp",
+          "name": "Jacuzi DJ Graphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/jakob-dj-graphic-h1.webp",
+          "thumb": "assets/strunk/jakob-dj-graphic-h1-thumb.webp",
+          "name": "Jakob DJ Graphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/shizo-dj-graphic-h1.webp",
+          "thumb": "assets/strunk/shizo-dj-graphic-h1-thumb.webp",
+          "name": "Shizo DJ Graphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/strunk-dj-graphic-h1.webp",
+          "thumb": "assets/strunk/strunk-dj-graphic-h1-thumb.webp",
+          "name": "Strunk DJ Graphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/thomson-dj-graphic-h1.webp",
+          "thumb": "assets/strunk/thomson-dj-graphic-h1-thumb.webp",
+          "name": "Thomson DJ Graphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/toney-dj-graphic-h1.webp",
+          "thumb": "assets/strunk/toney-dj-graphic-h1-thumb.webp",
+          "name": "Toney DJ Graphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/tutaku-dj-graphic-h1.webp",
+          "thumb": "assets/strunk/tutaku-dj-graphic-h1-thumb.webp",
+          "name": "Tutaku DJ Graphic H1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/strunkwars-poster.webp",
+          "thumb": "assets/strunk/strunkwars-poster-thumb.webp",
+          "name": "Strunkwars Poster.png",
+          "width": 4961,
+          "height": 7016,
+          "format": "Poster"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk/dj-video-frame.webp",
+          "thumb": "assets/strunk/dj-video-frame-thumb.webp",
+          "name": "DJ Video Frame.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Video-Overlay"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/strunk/strunkwars-poster-thumb.webp",
+        "file": "assets/strunk/strunkwars-poster.webp",
+        "name": "Strunkwars Poster.png",
+        "icon": "assets/strunk/strunkwars-poster-icon.webp"
+      }
+    },
+    {
+      "slug": "strunk-cow-theme",
+      "title": "Strunk Cow Theme",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/post-1.webp",
+          "thumb": "assets/strunk-cow-theme/post-1-thumb.webp",
+          "name": "Post 1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/post-2.webp",
+          "thumb": "assets/strunk-cow-theme/post-2-thumb.webp",
+          "name": "Post 2.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 1,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/post-3.webp",
+          "thumb": "assets/strunk-cow-theme/post-3-thumb.webp",
+          "name": "Post 3.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 2,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/story-strunk.webp",
+          "thumb": "assets/strunk-cow-theme/story-strunk-thumb.webp",
+          "name": "Story Strunk.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "Story"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/facebook-event-bild-strunk.webp",
+          "thumb": "assets/strunk-cow-theme/facebook-event-bild-strunk-thumb.webp",
+          "name": "Facebook-Event Bild Strunk.png",
+          "width": 1920,
+          "height": 1080,
+          "format": "Event-Banner"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/website-strunk.webp",
+          "thumb": "assets/strunk-cow-theme/website-strunk-thumb.webp",
+          "name": "Website Strunk.png",
+          "width": 1080,
+          "height": 1080,
+          "format": "Website"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-posts-4materasu-post.webp",
+          "thumb": "assets/strunk-cow-theme/dj-posts-4materasu-post-thumb.webp",
+          "name": "DJ Posts/4materasu post.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-posts-gulla-post.webp",
+          "thumb": "assets/strunk-cow-theme/dj-posts-gulla-post-thumb.webp",
+          "name": "DJ Posts/gulla post.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-posts-harderer-post.webp",
+          "thumb": "assets/strunk-cow-theme/dj-posts-harderer-post-thumb.webp",
+          "name": "DJ Posts/harderer post.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-posts-julezwolf-post.webp",
+          "thumb": "assets/strunk-cow-theme/dj-posts-julezwolf-post-thumb.webp",
+          "name": "DJ Posts/julezwolf post.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-posts-strunk-post.webp",
+          "thumb": "assets/strunk-cow-theme/dj-posts-strunk-post-thumb.webp",
+          "name": "DJ Posts/strunk post.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-posts-tutaku-post.webp",
+          "thumb": "assets/strunk-cow-theme/dj-posts-tutaku-post-thumb.webp",
+          "name": "DJ Posts/tutaku post.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-storys-4materasu-story.webp",
+          "thumb": "assets/strunk-cow-theme/dj-storys-4materasu-story-thumb.webp",
+          "name": "DJ Storys/4MATERASU Story.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-storys-gulla-story.webp",
+          "thumb": "assets/strunk-cow-theme/dj-storys-gulla-story-thumb.webp",
+          "name": "DJ Storys/Gulla Story.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-storys-harderer-story.webp",
+          "thumb": "assets/strunk-cow-theme/dj-storys-harderer-story-thumb.webp",
+          "name": "DJ Storys/Harderer Story.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-storys-julezwolf-story.webp",
+          "thumb": "assets/strunk-cow-theme/dj-storys-julezwolf-story-thumb.webp",
+          "name": "DJ Storys/Julezwolf story.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-storys-strunk-story.webp",
+          "thumb": "assets/strunk-cow-theme/dj-storys-strunk-story-thumb.webp",
+          "name": "DJ Storys/Strunk Story.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/dj-storys-tutaku-story.webp",
+          "thumb": "assets/strunk-cow-theme/dj-storys-tutaku-story-thumb.webp",
+          "name": "DJ Storys/Tutaku Story.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "DJ-Karten"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/strunk-poster.webp",
+          "thumb": "assets/strunk-cow-theme/strunk-poster-thumb.webp",
+          "name": "strunk poster.png",
+          "width": 4961,
+          "height": 7016,
+          "format": "Poster"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/video-overlay-strunk.webp",
+          "thumb": "assets/strunk-cow-theme/video-overlay-strunk-thumb.webp",
+          "name": "Video Overlay Strunk.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "Video-Overlay"
+        },
+        {
+          "type": "image",
+          "file": "assets/strunk-cow-theme/strunk-overlay-video-post.webp",
+          "thumb": "assets/strunk-cow-theme/strunk-overlay-video-post-thumb.webp",
+          "name": "strunk overlay Video post.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Video-Overlay"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/strunk-cow-theme/strunk-poster-thumb.webp",
+        "file": "assets/strunk-cow-theme/strunk-poster.webp",
+        "name": "strunk poster.png",
+        "icon": "assets/strunk-cow-theme/strunk-poster-icon.webp"
+      }
+    },
+    {
+      "slug": "groove-vs-bounce-2",
+      "title": "Groove vs bounce 2",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/post-1-slide-1.webp",
+          "thumb": "assets/groove-vs-bounce-2/post-1-slide-1-thumb.webp",
+          "name": "Post 1 Slide 1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/post-1-slide-2.webp",
+          "thumb": "assets/groove-vs-bounce-2/post-1-slide-2-thumb.webp",
+          "name": "Post 1 Slide 2.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 2.0
+        },
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/post-2-v2-inkl-logos.webp",
+          "thumb": "assets/groove-vs-bounce-2/post-2-v2-inkl-logos-thumb.webp",
+          "name": "Post 2 V2 (inkl Logos).png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 1,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/post-2.webp",
+          "thumb": "assets/groove-vs-bounce-2/post-2-thumb.webp",
+          "name": "Post 2.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 1,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/post-3-slide-1.webp",
+          "thumb": "assets/groove-vs-bounce-2/post-3-slide-1-thumb.webp",
+          "name": "Post 3 Slide 1.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 2,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/post-3-slide-2-2.webp",
+          "thumb": "assets/groove-vs-bounce-2/post-3-slide-2-2-thumb.webp",
+          "name": "Post 3 Slide 2.2.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 2,
+          "slide": 2.2
+        },
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/storyformat.webp",
+          "thumb": "assets/groove-vs-bounce-2/storyformat-thumb.webp",
+          "name": "Storyformat.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "Story"
+        },
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/facebook-event-bild.webp",
+          "thumb": "assets/groove-vs-bounce-2/facebook-event-bild-thumb.webp",
+          "name": "Facebook Event Bild.png",
+          "width": 1920,
+          "height": 1080,
+          "format": "Event-Banner"
+        },
+        {
+          "type": "image",
+          "file": "assets/groove-vs-bounce-2/website.webp",
+          "thumb": "assets/groove-vs-bounce-2/website-thumb.webp",
+          "name": "website.png",
+          "width": 1080,
+          "height": 1080,
+          "format": "Website"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/groove-vs-bounce-2/post-2-v2-inkl-logos-thumb.webp",
+        "file": "assets/groove-vs-bounce-2/post-2-v2-inkl-logos.webp",
+        "name": "Post 2 V2 (inkl Logos).png",
+        "icon": "assets/groove-vs-bounce-2/post-2-v2-inkl-logos-icon.webp"
+      }
+    },
+    {
+      "slug": "bob4-insta",
+      "title": "Bob4 Insta",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/bob4-insta/post-links.webp",
+          "thumb": "assets/bob4-insta/post-links-thumb.webp",
+          "name": "Post links.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/bob4-insta/post-mitte.webp",
+          "thumb": "assets/bob4-insta/post-mitte-thumb.webp",
+          "name": "Post Mitte.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 1,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/bob4-insta/post-rechts.webp",
+          "thumb": "assets/bob4-insta/post-rechts-thumb.webp",
+          "name": "Post Rechts.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 2,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/bob4-insta/story-star.webp",
+          "thumb": "assets/bob4-insta/story-star-thumb.webp",
+          "name": "Story Star.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "Story"
+        },
+        {
+          "type": "image",
+          "file": "assets/bob4-insta/dorni-banner-star.webp",
+          "thumb": "assets/bob4-insta/dorni-banner-star-thumb.webp",
+          "name": "Dorni banner Star.png",
+          "width": 1878,
+          "height": 942,
+          "format": "Event-Banner"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/bob4-insta/post-mitte-thumb.webp",
+        "file": "assets/bob4-insta/post-mitte.webp",
+        "name": "Post Mitte.png",
+        "icon": "assets/bob4-insta/post-mitte-icon.webp"
+      }
+    },
+    {
+      "slug": "starkollektiv-too-groovy-to-behave",
+      "title": "starkollektiv too groovy to behave",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/starkollektiv-too-groovy-to-behave/links.webp",
+          "thumb": "assets/starkollektiv-too-groovy-to-behave/links-thumb.webp",
+          "name": "LINKS.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 0,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/starkollektiv-too-groovy-to-behave/mitte.webp",
+          "thumb": "assets/starkollektiv-too-groovy-to-behave/mitte-thumb.webp",
+          "name": "MITTE.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 1,
+          "slide": 1.0
+        },
+        {
+          "type": "image",
+          "file": "assets/starkollektiv-too-groovy-to-behave/rechts.webp",
+          "thumb": "assets/starkollektiv-too-groovy-to-behave/rechts-thumb.webp",
+          "name": "RECHTS.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Feed-Raster",
+          "spalte": 2,
+          "slide": 1.0
+        }
+      ],
+      "cover": {
+        "thumb": "assets/starkollektiv-too-groovy-to-behave/mitte-thumb.webp",
+        "file": "assets/starkollektiv-too-groovy-to-behave/mitte.webp",
+        "name": "MITTE.png",
+        "icon": "assets/starkollektiv-too-groovy-to-behave/mitte-icon.webp"
+      }
+    },
+    {
+      "slug": "maifestival",
+      "title": "Maifestival",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/maifestival/1-mai-instagram-post-mit-lineup.webp",
+          "thumb": "assets/maifestival/1-mai-instagram-post-mit-lineup-thumb.webp",
+          "name": "1. Mai Instagram Post mit lineup.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Post"
+        },
+        {
+          "type": "image",
+          "file": "assets/maifestival/poster-1-dornheim-storyformat-1-mai.webp",
+          "thumb": "assets/maifestival/poster-1-dornheim-storyformat-1-mai-thumb.webp",
+          "name": "Poster 1 (Dornheim)/Storyformat 1. Mai.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "Story"
+        },
+        {
+          "type": "image",
+          "file": "assets/maifestival/poster-1-dornheim-facebook-event-bild-1-mai.webp",
+          "thumb": "assets/maifestival/poster-1-dornheim-facebook-event-bild-1-mai-thumb.webp",
+          "name": "Poster 1 (Dornheim)/Facebook-Event-Bild 1. Mai.png",
+          "width": 1920,
+          "height": 1080,
+          "format": "Event-Banner"
+        },
+        {
+          "type": "image",
+          "file": "assets/maifestival/poster-1-dornheim-webseite-1-mai.webp",
+          "thumb": "assets/maifestival/poster-1-dornheim-webseite-1-mai-thumb.webp",
+          "name": "Poster 1 (Dornheim)/Webseite 1. Mai.png",
+          "width": 1080,
+          "height": 1080,
+          "format": "Website"
+        },
+        {
+          "type": "image",
+          "file": "assets/maifestival/1-mai-flyer-a6.webp",
+          "thumb": "assets/maifestival/1-mai-flyer-a6-thumb.webp",
+          "name": "1. Mai Flyer A6.png",
+          "width": 4961,
+          "height": 7016,
+          "format": "Poster"
+        },
+        {
+          "type": "image",
+          "file": "assets/maifestival/1-mai-lineup-poster-a2.webp",
+          "thumb": "assets/maifestival/1-mai-lineup-poster-a2-thumb.webp",
+          "name": "1. Mai lineup Poster A2.png",
+          "width": 4961,
+          "height": 7016,
+          "format": "Poster"
+        },
+        {
+          "type": "image",
+          "file": "assets/maifestival/a6.webp",
+          "thumb": "assets/maifestival/a6-thumb.webp",
+          "name": "A6.png",
+          "width": 1240,
+          "height": 1748,
+          "format": "Poster"
+        },
+        {
+          "type": "image",
+          "file": "assets/maifestival/poster-1-dornheim-1-mai-a2-poster.webp",
+          "thumb": "assets/maifestival/poster-1-dornheim-1-mai-a2-poster-thumb.webp",
+          "name": "Poster 1 (Dornheim)/1. Mai A2 Poster.png",
+          "width": 7016,
+          "height": 9913,
+          "format": "Poster"
+        },
+        {
+          "type": "image",
+          "file": "assets/maifestival/poster-1-dornheim-instagram-1-mai.webp",
+          "thumb": "assets/maifestival/poster-1-dornheim-instagram-1-mai-thumb.webp",
+          "name": "Poster 1 (Dornheim)/Instagram 1.mai.png",
+          "width": 4320,
+          "height": 5400,
+          "format": "Poster"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/maifestival/1-mai-lineup-poster-a2-thumb.webp",
+        "file": "assets/maifestival/1-mai-lineup-poster-a2.webp",
+        "name": "1. Mai lineup Poster A2.png",
+        "icon": "assets/maifestival/1-mai-lineup-poster-a2-icon.webp"
+      }
+    },
+    {
+      "slug": "joyride2",
+      "title": "joyride2",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/joyride2/joyride-2-lineup.webp",
+          "thumb": "assets/joyride2/joyride-2-lineup-thumb.webp",
+          "name": "Joyride 2 lineup.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Post"
+        },
+        {
+          "type": "image",
+          "file": "assets/joyride2/joyride-2-main.webp",
+          "thumb": "assets/joyride2/joyride-2-main-thumb.webp",
+          "name": "Joyride 2 main.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Post"
+        },
+        {
+          "type": "image",
+          "file": "assets/joyride2/joyride-2-story.webp",
+          "thumb": "assets/joyride2/joyride-2-story-thumb.webp",
+          "name": "Joyride 2 story.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "Story"
+        },
+        {
+          "type": "image",
+          "file": "assets/joyride2/joyride-sticker-plain.webp",
+          "thumb": "assets/joyride2/joyride-sticker-plain-thumb.webp",
+          "name": "Joyride Sticker Plain.png",
+          "width": 2000,
+          "height": 2000,
+          "format": "Sticker"
+        },
+        {
+          "type": "image",
+          "file": "assets/joyride2/joyride-sticker-qr-code.webp",
+          "thumb": "assets/joyride2/joyride-sticker-qr-code-thumb.webp",
+          "name": "joyride sticker qr code.png",
+          "width": 4000,
+          "height": 2000,
+          "format": "Sticker"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/joyride2/joyride-2-main-thumb.webp",
+        "file": "assets/joyride2/joyride-2-main.webp",
+        "name": "Joyride 2 main.png",
+        "icon": "assets/joyride2/joyride-2-main-icon.webp"
+      }
+    },
+    {
+      "slug": "joyride-dachterasse-03-06",
+      "title": "Joyride Dachterasse 03.06.",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/joyride-dachterasse-03-06/joyride-post-fur-03-06.webp",
+          "thumb": "assets/joyride-dachterasse-03-06/joyride-post-fur-03-06-thumb.webp",
+          "name": "joyride post für 03.06.png",
+          "width": 1080,
+          "height": 1350,
+          "format": "Post"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/joyride-dachterasse-03-06/joyride-post-fur-03-06-thumb.webp",
+        "file": "assets/joyride-dachterasse-03-06/joyride-post-fur-03-06.webp",
+        "name": "joyride post für 03.06.png",
+        "icon": "assets/joyride-dachterasse-03-06/joyride-post-fur-03-06-icon.webp"
+      }
+    },
+    {
+      "slug": "toney-17-07",
+      "title": "Toney 17.07.",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/toney-17-07/joyride-17-07.webp",
+          "thumb": "assets/toney-17-07/joyride-17-07-thumb.webp",
+          "name": "Joyride 17.07.png",
+          "width": 3508,
+          "height": 4961,
+          "format": "Poster"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/toney-17-07/joyride-17-07-thumb.webp",
+        "file": "assets/toney-17-07/joyride-17-07.webp",
+        "name": "Joyride 17.07.png",
+        "icon": "assets/toney-17-07/joyride-17-07-icon.webp"
+      }
+    },
+    {
+      "slug": "toney-animation-26-06",
+      "title": "Toney Animation 26.06.",
+      "items": [
+        {
+          "type": "video",
+          "file": "assets/toney-animation-26-06/joyride-anim.mp4",
+          "name": "joyride anim.mp4",
+          "thumb": "assets/toney-animation-26-06/joyride-anim-thumb.webp",
+          "poster": "assets/toney-animation-26-06/joyride-anim-poster.webp",
+          "format": "Video"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/toney-animation-26-06/joyride-anim-thumb.webp",
+        "file": "assets/toney-animation-26-06/joyride-anim.mp4",
+        "name": "joyride anim.mp4",
+        "icon": "assets/toney-animation-26-06/joyride-anim-icon.webp"
+      }
+    },
+    {
+      "slug": "computerklang-instagram-icon",
+      "title": "Computerklang Instagram-Icon",
+      "cover": {
+        "thumb": "assets/computerklang/computerklang-icon-art-thumb.webp",
+        "file": "assets/computerklang/computerklang-icon-art.webp",
+        "icon": "assets/computerklang/computerklang-icon-art-icon.webp",
+        "name": "computerklang icon.png"
+      },
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/computerklang/computerklang-icon-art.webp",
+          "thumb": "assets/computerklang/computerklang-icon-art-thumb.webp",
+          "name": "computerklang icon.png",
+          "width": 1080,
+          "height": 1080,
+          "format": "Icon"
+        }
+      ]
+    },
+    {
+      "slug": "klangfund-intro-animation",
+      "title": "Klangfund Intro Animation",
+      "cover": {
+        "thumb": "assets/klangfund-intro/intro-7s-thumb.webp",
+        "file": "assets/klangfund-intro/intro-7s-poster.webp",
+        "icon": "assets/klangfund-intro/intro-7s-icon.webp",
+        "name": "INTRO_7s.mp4"
+      },
+      "items": [
+        {
+          "type": "video",
+          "file": "assets/klangfund-intro/intro-7s.mp4",
+          "thumb": "assets/klangfund-intro/intro-7s-thumb.webp",
+          "poster": "assets/klangfund-intro/intro-7s-poster.webp",
+          "name": "INTRO_7s.mp4",
+          "format": "Video"
+        }
+      ]
+    },
+    {
+      "slug": "antidote-album-cover",
+      "title": "antidote album cover",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/antidote-album-cover/antidote-album-cover.webp",
+          "thumb": "assets/antidote-album-cover/antidote-album-cover-thumb.webp",
+          "name": "antidote album cover.png",
+          "width": 2160,
+          "height": 2160,
+          "format": "Cover"
+        },
+        {
+          "type": "image",
+          "file": "assets/antidote-album-cover/antidote-spotify-mockup.webp",
+          "thumb": "assets/antidote-album-cover/antidote-spotify-mockup-thumb.webp",
+          "name": "antidote spotify mockup.png",
+          "width": 1080,
+          "height": 1920,
+          "format": "Mockup"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/antidote-album-cover/antidote-album-cover-thumb.webp",
+        "file": "assets/antidote-album-cover/antidote-album-cover.webp",
+        "name": "antidote album cover.png",
+        "icon": "assets/antidote-album-cover/antidote-album-cover-icon.webp"
+      }
+    },
+    {
+      "slug": "sopsi-album-cover",
+      "title": "Sopsi album cover",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/sopsi-album-cover/album-cover-sopsi.webp",
+          "thumb": "assets/sopsi-album-cover/album-cover-sopsi-thumb.webp",
+          "name": "Album Cover Sopsi.png",
+          "width": 4000,
+          "height": 4000,
+          "format": "Cover"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/sopsi-album-cover/album-cover-sopsi-thumb.webp",
+        "file": "assets/sopsi-album-cover/album-cover-sopsi.webp",
+        "name": "Album Cover Sopsi.png",
+        "icon": "assets/sopsi-album-cover/album-cover-sopsi-icon.webp"
+      }
+    },
+    {
+      "slug": "shelters-ep-design",
+      "title": "Shelters EP Design",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/shelters-ep-design/shelters-ep-design-rz.webp",
+          "thumb": "assets/shelters-ep-design/shelters-ep-design-rz-thumb.webp",
+          "name": "Shelters EP Design RZ.png",
+          "width": 4000,
+          "height": 4000,
+          "format": "Cover"
+        },
+        {
+          "type": "image",
+          "file": "assets/shelters-ep-design/shelters-ep-design-mockup.webp",
+          "thumb": "assets/shelters-ep-design/shelters-ep-design-mockup-thumb.webp",
+          "name": "Shelters EP Design Mockup.png",
+          "width": 7490,
+          "height": 6129,
+          "format": "Mockup"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/shelters-ep-design/shelters-ep-design-mockup-thumb.webp",
+        "file": "assets/shelters-ep-design/shelters-ep-design-mockup.webp",
+        "name": "Shelters EP Design Mockup.png",
+        "icon": "assets/shelters-ep-design/shelters-ep-design-mockup-icon.webp"
+      }
+    },
+    {
+      "slug": "weidentanz",
+      "title": "Weidentanz",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/need-printed/kopie-von-weidentanz-finished.webp",
+          "thumb": "assets/need-printed/kopie-von-weidentanz-finished-thumb.webp",
+          "name": "Kopie von weidentanz finished.png",
+          "width": 4961,
+          "height": 7016,
+          "format": "Poster"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/need-printed/kopie-von-weidentanz-finished-thumb.webp",
+        "file": "assets/need-printed/kopie-von-weidentanz-finished.webp",
+        "name": "Kopie von weidentanz finished.png",
+        "icon": "assets/need-printed/kopie-von-weidentanz-finished-icon.webp"
+      }
+    },
+    {
+      "slug": "need-printed",
+      "title": "need printed",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/need-printed/poster-shits.webp",
+          "thumb": "assets/need-printed/poster-shits-thumb.webp",
+          "name": "Poster Shits.png",
+          "width": 4961,
+          "height": 7016,
+          "format": "Poster"
+        },
+        {
+          "type": "image",
+          "file": "assets/need-printed/cat-mine-poster-finished.webp",
+          "thumb": "assets/need-printed/cat-mine-poster-finished-thumb.webp",
+          "name": "cat mine poster finished.png",
+          "width": 4961,
+          "height": 7016,
+          "format": "Poster"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/need-printed/cat-mine-poster-finished-thumb.webp",
+        "file": "assets/need-printed/cat-mine-poster-finished.webp",
+        "name": "cat mine poster finished.png",
+        "icon": "assets/need-printed/cat-mine-poster-finished-icon.webp"
+      }
+    },
+    {
+      "slug": "anton-1-poster",
+      "title": "Anton 1 - Poster.png",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/einzelstuecke/anton-1-poster.webp",
+          "thumb": "assets/einzelstuecke/anton-1-poster-thumb.webp",
+          "name": "Anton 1 - Poster.png",
+          "width": 4961,
+          "height": 7016,
+          "format": "Poster"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/einzelstuecke/anton-1-poster-thumb.webp",
+        "file": "assets/einzelstuecke/anton-1-poster.webp",
+        "name": "Anton 1 - Poster.png",
+        "icon": "assets/einzelstuecke/anton-1-poster-icon.webp"
+      }
+    },
+    {
+      "slug": "luwiee-sticker",
+      "title": "luwiee sticker",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/luwiee-sticker/sticker-luwie.webp",
+          "thumb": "assets/luwiee-sticker/sticker-luwie-thumb.webp",
+          "name": "sticker luwie.png",
+          "width": 2704,
+          "height": 2704,
+          "format": "Sticker"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/luwiee-sticker/sticker-luwie-thumb.webp",
+        "file": "assets/luwiee-sticker/sticker-luwie.webp",
+        "name": "sticker luwie.png",
+        "icon": "assets/luwiee-sticker/sticker-luwie-icon.webp"
+      }
+    },
+    {
+      "slug": "toney-wav-stickers",
+      "title": "toney.wav stickers",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/toney-wav-stickers/toney-sticker.webp",
+          "thumb": "assets/toney-wav-stickers/toney-sticker-thumb.webp",
+          "name": "toney sticker.png",
+          "width": 4000,
+          "height": 3000,
+          "format": "Sticker"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/toney-wav-stickers/toney-sticker-thumb.webp",
+        "file": "assets/toney-wav-stickers/toney-sticker.webp",
+        "name": "toney sticker.png",
+        "icon": "assets/toney-wav-stickers/toney-sticker-icon.webp"
+      }
+    },
+    {
+      "slug": "schepperpeach-stickerz",
+      "title": "Schepperpeach Stickerz",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/schepperpeach-stickerz/schepperpeach-sticker.webp",
+          "thumb": "assets/schepperpeach-stickerz/schepperpeach-sticker-thumb.webp",
+          "name": "schepperpeach sticker.png",
+          "width": 1440,
+          "height": 960,
+          "format": "Sticker"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/schepperpeach-stickerz/schepperpeach-sticker-thumb.webp",
+        "file": "assets/schepperpeach-stickerz/schepperpeach-sticker.webp",
+        "name": "schepperpeach sticker.png",
+        "icon": "assets/schepperpeach-stickerz/schepperpeach-sticker-icon.webp"
+      }
+    },
+    {
+      "slug": "rejep-entrumpelung",
+      "title": "Rejep Entrümpelung",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/rejep-entrumpelung/rejep-visitenkarte-ruckseite.webp",
+          "thumb": "assets/rejep-entrumpelung/rejep-visitenkarte-ruckseite-thumb.webp",
+          "name": "Rejep Visitenkarte Rückseite.png",
+          "width": 1004,
+          "height": 650,
+          "format": "Visitenkarte"
+        },
+        {
+          "type": "image",
+          "file": "assets/rejep-entrumpelung/rejep-visitenkarte-vorderseite.webp",
+          "thumb": "assets/rejep-entrumpelung/rejep-visitenkarte-vorderseite-thumb.webp",
+          "name": "Rejep Visitenkarte Vorderseite.png",
+          "width": 1004,
+          "height": 650,
+          "format": "Visitenkarte"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/rejep-entrumpelung/rejep-visitenkarte-vorderseite-thumb.webp",
+        "file": "assets/rejep-entrumpelung/rejep-visitenkarte-vorderseite.webp",
+        "name": "Rejep Visitenkarte Vorderseite.png",
+        "icon": "assets/rejep-entrumpelung/rejep-visitenkarte-vorderseite-icon.webp"
+      }
+    },
+    {
+      "slug": "emptycloset-logo",
+      "title": "emptycloset logo.svg",
+      "items": [
+        {
+          "type": "image",
+          "file": "assets/einzelstuecke/emptycloset-logo.svg",
+          "thumb": "assets/einzelstuecke/emptycloset-logo.svg",
+          "name": "emptycloset logo.svg",
+          "format": "Logo"
+        }
+      ],
+      "cover": {
+        "thumb": "assets/einzelstuecke/emptycloset-logo.svg",
+        "file": "assets/einzelstuecke/emptycloset-logo.svg",
+        "name": "emptycloset logo.svg",
+        "icon": "assets/einzelstuecke/emptycloset-logo.svg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,898 @@
+/* ============================================================
+   maxschwarz.digital — macOS-Desktop-Metapher, Vanilla CSS
+   Maße nach der Detailanalyse der Referenz; kein fremder Code,
+   keine externen Schriften oder CDNs.
+   ============================================================ */
+
+:root {
+  /* ---- HINTERGRUND ---------------------------------------------------
+     --desktop-bg ist die EINZIGE Stelle, an der der Desktop-Hintergrund
+     definiert wird. Weiß liegt als Grundfarbe DAHINTER, damit beim Laden
+     und bei abweichenden Seitenverhältnissen kein grauer Rand entsteht;
+     `cover` beschneidet seitlich, was bei diesem Motiv unkritisch ist,
+     weil außen ohnehin nur Weiß steht.
+     Austausch: hier die URL ersetzen, sonst nichts.
+     ------------------------------------------------------------------ */
+  /* Es gibt ZWEI Wallpaper: das Querformat oben für breite Viewports und
+     assets/wallpaper-mobile.webp (9:16) für schmale — sonst würde das
+     16:9-Bild hochkant auf eine Wange zusammenbeschnitten. Umgeschaltet
+     wird allein über diese Variable im Mobil-Breakpoint, die Regeln, die
+     sie benutzen, bleiben unverändert. */
+  --desktop-bg: #ffffff url("assets/wallpaper.webp") center / cover no-repeat;
+
+  /* ---- ICON-LABEL ----------------------------------------------------
+     Die Referenz nutzt helle Schrift auf einem dunklen Wallpaper. Das
+     wäre hier falsch: unser Wallpaper ist überwiegend weiß (Ränder 255),
+     dunkel sind nur die mittlere Porträtspalte (x 37–62 %, ~140) und der
+     untere Streifen (y > 83 %, bis ~60). Also
+     dunkler Text, heller Textschatten und eine schwach deckende helle
+     Plakette, die erst über den dunklen Partien sichtbar trägt.
+     ------------------------------------------------------------------ */
+  /* Plakette bewusst schwach (0.28): sie soll als Hauch lesen, nicht als
+     Kasten. Was die Lesbarkeit über dem dunklen Shirt trägt, ist nicht
+     mehr die Deckkraft, sondern der mehrstufige helle Textschatten
+     darunter — der folgt den Buchstaben und bleibt unsichtbar, solange
+     der Grund hell ist. */
+  --icon-label-color: #1b1d20;
+  --icon-label-plate: rgba(255, 255, 255, 0.28);
+  --icon-label-shadow:
+     0 0 2px rgba(255, 255, 255, 1),
+     0 0 4px rgba(255, 255, 255, 0.98),
+     0 1px 2px rgba(255, 255, 255, 0.95),
+     0 0 9px rgba(255, 255, 255, 0.85),
+     0 0 14px rgba(255, 255, 255, 0.6);
+
+  --ink: #1b1d20;
+  --ink-soft: #5c6269;
+  --hairline: rgba(0, 0, 0, 0.14);
+  --accent: rgb(2, 88, 208);      /* Auswahl-/Hover-Plakette, Originalwert */
+  /* Ruhiger Platzhalterton, bis ein Bild geladen ist — kein Spinner. */
+  --placeholder: #f1f1f3;
+  /* Dock-Platte. Der Grund darunter ist mit dem neuen Wallpaper heller
+     geworden (gemessen 71 statt 50), deshalb von 0.22 auf 0.30 — bei
+     0.22 setzte sich die Platte dort nicht mehr ab. */
+  --dock-bg: rgba(255, 255, 255, 0.30);
+
+  --dock-h: 120px;        /* Reservezone unten (Dock + Abstand) */
+  --icon-w: 134px;        /* Icon-Zelle = Labelbreite + etwas Luft */
+  --label-w: 130px;
+  --cover-max: 92px;      /* längste Seite eines Thumbnails */
+  --cover-min: 40px;      /* kürzeste Seite, damit flache Banner greifbar bleiben */
+  --hover-scale: 1.12;
+
+  /* Feder-Ersatzkurve mit leichtem Überschwingen */
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* { box-sizing: border-box; }
+
+/* Die Seite selbst scrollt nie — gescrollt wird nur in den Fenstern. */
+html, body {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  /* Die Referenz nutzt SF Pro; die dürfen wir nicht ausliefern. Die
+     System-Schriftfolge trifft sie auf macOS exakt, ohne Webfont. */
+  font: 400 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--desktop-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------------------------------- Desktop + Icons */
+
+/* Randloser Desktop — keine Menüleiste. */
+.desktop { position: fixed; inset: 0; }
+
+.icons { position: relative; width: 100%; height: 100%; }
+
+/* Positionen setzt app.js: feste Prozentwerte + translate(-50%, -50%). */
+.icon {
+  position: absolute;
+  width: var(--icon-w);
+  display: flex; flex-direction: column; align-items: center;
+  gap: 10px;                      /* Abstand Cover → Label */
+  padding: 0;
+  border: 0; background: none;
+  font: inherit; color: inherit;
+  cursor: pointer;
+  -webkit-user-select: none; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  /* Weil die Icons sich stapeln, darf die LEERE Fläche der Zelle keine
+     Klicks abfangen — sonst wären verdeckte Icons nicht mehr erreichbar.
+     Trefferfläche sind deshalb nur Thumbnail und Labeltext. */
+  pointer-events: none;
+}
+.icon__thumb, .icon__label { pointer-events: auto; }
+/* DOPPELTIPP ----------------------------------------------------------
+   Die Icons tragen neben dem Einzelklick einen dblclick-Handler. Ohne
+   `touch-action` deutet der Browser einen Doppeltipp ZUSAETZLICH als
+   Doppeltipp-Zoom: das Fenster ging auf UND die Seite zoomte.
+   `manipulation` laesst Scrollen und Pinch-Zoom unberuehrt und schaltet
+   allein den Doppeltipp-Zoom ab. */
+.icon__thumb, .icon__label { touch-action: manipulation; }
+
+/* Das Icon unter dem Zeiger, das fokussierte und das ausgewählte kommen
+   nach vorn, damit Cover und Label trotz Überlappung vollständig
+   lesbar sind. */
+.icon:hover, .icon:focus-visible, .icon[aria-pressed="true"] { z-index: 5; }
+
+/* Cover-Wrapper. Die Box trägt das ECHTE Seitenverhältnis des Bildes —
+   width/height setzt app.js inline aus den natürlichen Bildmaßen, nichts
+   wird beschnitten.
+   KEIN Rahmen, kein Kastenschatten, kein Platzhaltergrund: die Datei soll
+   in ihrer eigenen Form stehen, nicht in einem Rechteck. Die Trennung vom
+   weißen Wallpaper leistet stattdessen ein `drop-shadow`-FILTER. Der
+   arbeitet auf dem Alphakanal, folgt also der Silhouette des Motivs statt
+   einem Kasten — bei rechteckigen WebPs ist das die Bildkante, bei
+   freigestellten Logos/Stickern die Kontur. Dezent gehalten, damit er
+   nirgends als Rahmen liest. */
+.icon__thumb {
+  position: relative;
+  display: block;
+  border: 0;
+  background: none;
+  filter: drop-shadow(0 1px 3.5px rgba(0, 0, 0, 0.30));
+  /* Nur die Skalierung wird animiert. Der Schatten ABSICHTLICH nicht: beim
+     ersten Aufbau wechselt der Filter von `none` (Ladezustand) auf den
+     Schatten, und ein animierter Wechsel ließe ihn sichtbar einblenden —
+     21 Mal, zu unterschiedlichen Zeitpunkten. */
+  transition: transform 0.22s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+.icon__thumb img,
+.icon__glyph {
+  display: block;
+  width: 100%; height: 100%;
+  /* Vollständiges Bild in der proportionsgleichen Box, kein Beschnitt. */
+  object-fit: fill;
+}
+/* Solange das Bild nicht geladen ist, bleibt die Zelle LEER statt grau —
+   so kann nach dem Laden auch kein Rechteck zurückbleiben. */
+.icon__thumb:not(.is-loaded) { filter: none; }
+.icon__thumb:not(.is-loaded) img { opacity: 0; }
+/* Fallback-Glyph, wenn ein Projekt kein Bild hat. */
+.icon__glyph {
+  display: grid; place-items: center;
+  font-size: 22px; color: var(--ink-soft);
+}
+
+/* Hover: Skalierung statt fester Pixelmaße — funktioniert für jedes
+   Format. Das frühere dunkle Rechteck-Overlay ist entfallen, es wäre
+   wieder ein Kasten; der Schatten wird stattdessen tiefer, das Icon hebt
+   sich also an. */
+.icon:hover .icon__thumb,
+.icon:focus-visible .icon__thumb {
+  transform: scale(var(--hover-scale));
+  filter: drop-shadow(0 4px 9px rgba(0, 0, 0, 0.34));
+}
+
+/* Auswahl wie im Finder: Hauptsignal ist die blau hinterlegte
+   Namenszeile (weiter unten). Am Bild selbst liegt KEIN Rechteck mehr,
+   sondern ein blauer Saum aus vier versatzlosen drop-shadows — der folgt
+   der Silhouette des Motivs. */
+.icon[aria-pressed="true"] .icon__thumb {
+  filter:
+    drop-shadow( 1.5px 0 0 rgba(2, 88, 208, 0.9))
+    drop-shadow(-1.5px 0 0 rgba(2, 88, 208, 0.9))
+    drop-shadow(0  1.5px 0 rgba(2, 88, 208, 0.9))
+    drop-shadow(0 -1.5px 0 rgba(2, 88, 208, 0.9))
+    drop-shadow(0 1px 3.5px rgba(0, 0, 0, 0.30));
+}
+
+.icon__label {
+  max-width: var(--label-w);
+  /* Großzügiger Radius und etwas mehr Luft: bei so schwacher Deckkraft
+     soll die Plakette als weiche Lichtzone lesen, nicht als Etikett. */
+  padding: 2px 7px;
+  border-radius: 9px;
+  font-size: 13px; font-weight: 500; line-height: 1.2em;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--icon-label-color);
+  text-shadow: var(--icon-label-shadow);
+  background: var(--icon-label-plate);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  /* Umbruch NUR zwischen Wörtern. Bis zu DREI Zeilen — lieber ein
+     dreizeiliges Label als ein abgeschnittener Titel.
+     `overflow-wrap: break-word` stand hier zuvor und hat genau das
+     verletzt, was der Kommentar verspricht: ein einzelnes Wort, das
+     breiter als --label-w ist, wurde mitten im Wort gebrochen
+     ("COMPUTERKLAN/G"). Jetzt gibt es für einen solchen Fall keine
+     Bruchstelle mehr — stattdessen darf die Plakette so breit werden
+     wie ihr längstes Wort (`min-width: min-content`). Das ist die
+     ruhigere Lösung: die Plakette wächst bei genau einem Titel um
+     wenige Pixel über die Sollbreite (gemessen 110 → 113 px, immer noch
+     innerhalb der 114 px breiten Icon-Zelle), während ein mitten im Wort
+     gebrochener Projektname an jeder Scrollposition als Lesefehler
+     auffällt. Kein Clipping, weil die Box mitwächst. */
+  min-width: min-content;
+  word-break: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+/* Plakette bei Hover und Auswahl (Originalwerte). */
+.icon:hover .icon__label,
+.icon:focus-visible .icon__label,
+.icon[aria-pressed="true"] .icon__label {
+  background: var(--accent);
+  color: #fff;
+  text-shadow: none;
+}
+
+.icon:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* Sichtbarer Hinweis, wenn projects.json nicht lädt oder leer ist. */
+.notice {
+  position: absolute; top: 40%; left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0; padding: 12px 18px;
+  max-width: min(420px, 80vw);
+  text-align: center;
+  font-size: 13px; color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--hairline);
+  border-radius: 8px;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------------------------------- Fenster */
+
+.windows { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+
+.window {
+  position: absolute;
+  pointer-events: auto;
+  width: min(72vw, 1100px);
+  height: 84vh;
+  display: flex; flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  background: rgba(252, 251, 251, 0.94);
+  backdrop-filter: saturate(180%) blur(22px);
+  -webkit-backdrop-filter: saturate(180%) blur(22px);
+  box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.25);
+  transform-origin: center;
+  animation: window-in 0.4s var(--spring) both;
+}
+.window--closing { animation: window-out 0.3s var(--spring) both; }
+
+/* Kleines Fenster für eine einzelne Angabe (Dock-Skills). */
+.window--skill { width: 380px; height: 180px; }
+.skill-line { margin: 0; font-size: 13px; }
+
+@keyframes window-in {
+  from { opacity: 0; transform: scale(0.5); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes window-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.5); }
+}
+
+.titlebar {
+  flex: 0 0 auto;
+  padding: 10px 10px 0;
+  background: rgb(239, 235, 234);
+  cursor: default;
+  -webkit-user-select: none; user-select: none;
+}
+.titlebar__row { display: flex; align-items: center; gap: 7px; }
+/* Trennlinie über die volle Fensterbreite. */
+.titlebar__rule { display: block; height: 1px; margin: 10px -10px 0; background: var(--hairline); }
+
+.lights { display: flex; gap: 5px; }
+.light {
+  width: 9px; height: 9px; border-radius: 50%;
+  padding: 0; border: 0; cursor: pointer;
+}
+.light--close { background: rgb(224, 101, 81); }
+.light--min   { background: rgb(236, 185, 68); }
+.light--zoom  { background: rgb(98, 187, 75); }
+.light:disabled { cursor: default; }
+.light:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.light { touch-action: manipulation; }
+
+.titlebar__title {
+  margin: 0;
+  font-size: 13px; font-weight: 500;
+  text-align: left;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  pointer-events: none;
+}
+
+.window__body {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 10px;
+  /* Scrollbalken ausblenden wie in der Referenz. */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.window__body::-webkit-scrollbar { display: none; }
+
+.infohead {
+  display: flex; align-items: center; gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--hairline);
+}
+.infohead__thumb {
+  width: 92px; height: 92px; flex: 0 0 auto;
+  display: grid; place-items: center;
+  border-radius: 2px; overflow: hidden;
+  border: 1px solid var(--hairline);
+  background: #fff;
+}
+.infohead__thumb img {
+  width: 100%; height: 100%; display: block;
+  object-fit: contain;
+}
+.infohead__name { font-size: 14px; font-weight: 600; overflow-wrap: anywhere; }
+.infohead__count { font-size: 12px; color: var(--ink-soft); }
+
+/* Kopfzeile: Titelbild, Projektname, Umfangszeile. */
+.infohead__scope {
+  font-size: 12px; line-height: 1.4;
+  color: var(--ink-soft);
+}
+
+/* Formatgruppe: zurückhaltende Überschrift mit feiner Linie darüber,
+   kein Kasten, keine Farbe. */
+.formatgroup { margin-top: 14px; }
+.formatgroup__head {
+  margin: 0 0 7px;
+  padding-top: 9px;
+  border-top: 1px solid var(--hairline);
+  font-size: 12px; font-weight: 600;
+  color: var(--ink);
+}
+
+/* KACHELN ---------------------------------------------------------------
+   Im Fenster steht die Übersicht. Jede Kachel ist ein Button mit fester
+   Höhe; das Bild wird vollständig einbeschrieben (contain), nie
+   beschnitten. Der helle Grundton ist der ruhige Platzhalter, bis das
+   Bild geladen ist — er verschwindet danach.
+   ------------------------------------------------------------------------ */
+.tile {
+  display: grid; place-items: center;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 0;
+  background: var(--placeholder);
+  cursor: pointer;
+  overflow: hidden;
+}
+.tile.is-loaded { background: transparent; }
+.tile img, .tile video {
+  display: block;
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto;
+  object-fit: contain;
+}
+.tile:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Kein Doppeltipp-Zoom auf den Kacheln (siehe .icon__thumb). */
+.tile { touch-action: manipulation; }
+
+/* Übrige Formate: Raster statt Vollbreite. */
+.tilegrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+  align-items: start;
+}
+.tilegrid > .tile { height: 190px; }
+
+/* FEED-RASTER: drei gleich breite Spalten, minimaler Abstand. Alle Kacheln
+   teilen dasselbe Seitenverhältnis (aus den Daten), deshalb schließen die
+   Reihen sauber ab. Bleibt auch auf schmalen Fenstern und mobil
+   dreispaltig — sonst verliert das Format seine Aussage. */
+/* Breite begrenzt: ein Profilraster ist schmal. Ohne die Begrenzung
+   würden die drei Kacheln auf volle Fensterbreite wachsen und die
+   Übersicht wieder zerstören, die dieses Fenster leisten soll. */
+.feedgrid {
+  --feed-ratio: 4 / 5;
+  max-width: 560px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  align-items: start;
+}
+.feedgrid__cell { display: block; }
+.feedgrid > .feedgrid__cell > .tile { aspect-ratio: var(--feed-ratio); height: auto; }
+
+/* Dezente Marke unter einem gestapelten Slide. */
+.slidetag {
+  display: block;
+  padding: 3px 0 5px;
+  font-size: 10px; line-height: 1.2;
+  color: var(--ink-soft);
+}
+
+/* DJ-Karten: kompaktes Raster, eine Karte pro Act. Ebenfalls begrenzt,
+   damit die Karten nicht auf Plakatgröße aufgehen. */
+.cardgrid {
+  max-width: 560px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+.cardgrid > .tile { height: 210px; }
+
+/* ---------------------------------- Großansicht (Quick Look) */
+
+/* HÖHE: `inset: 0` allein genügt NICHT. Ein fixiertes Element bezieht sich
+   auf den LAYOUT-Viewport; der ist auf iOS Safari höher als der sichtbare
+   Bereich, solange Adress- und Werkzeugleiste eingefahren sind — der
+   untere Teil der Großansicht lag damit unter der Leiste. Deshalb oben
+   verankert und die Höhe explizit auf `100dvh`, die dynamische Einheit,
+   die genau den sichtbaren Bereich meint. */
+.quicklook {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100dvh;
+  z-index: 200;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 14px;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.72);
+  animation: quicklook-in 0.18s ease-out both;
+}
+@keyframes quicklook-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* Die Bühne nimmt die TATSÄCHLICH übrige Höhe: alles, was nach Polsterung
+   und Namenszeile bleibt. Früher stand hier `88vh` — zusammen mit
+   Polsterung und Zeile ergab das mehr als die Fensterhöhe, hohe Formate
+   liefen deshalb unten heraus. `flex: 1` plus `min-height: 0` lässt den
+   Flex-Algorithmus die Grenze bestimmen, statt sie zu raten. */
+.quicklook__stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.quicklook__stage img, .quicklook__stage video {
+  display: block;
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto;
+  object-fit: contain;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Die Zeile darf nicht schrumpfen und nicht wachsen — sie ist der feste
+   Teil, gegen den die Bühne gerechnet wird. */
+.quicklook__bar { flex: 0 0 auto; }
+
+/* Schlichte Zeile mit Dateiname, Format und Position. */
+.quicklook__bar {
+  display: flex; align-items: baseline; gap: 12px;
+  max-width: 100%;
+  font-size: 12px; line-height: 1.4;
+  color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+  flex-wrap: wrap; justify-content: center;
+}
+.quicklook__name { font-weight: 600; overflow-wrap: anywhere; }
+.quicklook__meta { color: rgba(255, 255, 255, 0.65); white-space: nowrap; }
+
+.quicklook__close {
+  position: absolute; top: 16px; right: 16px;
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  padding: 0;
+  font: 400 20px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.quicklook__close:hover { background: rgba(255, 255, 255, 0.24); }
+.quicklook__close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* Blätter-Knöpfe. Sie liegen an den Rändern über dem abgedunkelten
+   Grund — auf dem Handy die einzige Möglichkeit zu blättern. */
+.quicklook__nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  padding: 0;
+  font: 400 28px/1 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
+}
+.quicklook__nav[hidden] { display: none; }
+.quicklook__nav--prev { left: 12px; }
+.quicklook__nav--next { right: 12px; }
+.quicklook__nav:hover { background: rgba(255, 255, 255, 0.24); }
+.quicklook__nav:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.quicklook__close, .quicklook__nav { touch-action: manipulation; }
+
+/* ---------------------------------- Dock */
+
+/* Material: stark durchscheinende Platte mit kräftigem Weichzeichner.
+   Das Dock sitzt über dem dunkelsten Teil des Wallpapers (Shirt, ~50),
+   deshalb ist die Deckkraft niedrig — so arbeitet der Weichzeichner
+   sichtbar, statt als milchige Fläche zu wirken. Auf dunklem Grund trägt
+   die helle Innenkante die Abgrenzung; die dunkle Außenkante ist nur noch
+   ein Hauch, damit sie nicht hart schneidet. */
+.dock {
+  position: fixed; bottom: 16px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; align-items: flex-end; gap: 5px;
+  padding: 6px 8px;
+  border-radius: 22px;
+  background: var(--dock-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.55),
+    0 10px 30px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.10);
+  z-index: 80;
+}
+
+/* Quadratische Zellen. Die Zelle behält IMMER ihre Größe — vergrößert
+   wird nur .dock__icon darin, deshalb verschiebt sich beim Hover nichts. */
+.dock__item {
+  position: relative;
+  width: 54px; height: 54px;
+  flex: 0 0 auto;
+  padding: 0; border: 0; background: none;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex; align-items: flex-end; justify-content: center;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.dock__item:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
+.dock__item { touch-action: manipulation; }
+
+.dock__icon {
+  display: grid; place-items: center;
+  width: 100%; height: 100%;
+  padding: 8%;
+  /* Unten verankert: die Icons wachsen nach oben und bleiben unten bündig. */
+  transform-origin: bottom center;
+  transform: scale(calc(var(--dock-scale, 1) * var(--dock-press, 1)));
+  transition: transform 0.18s ease-out;
+}
+/* Kurzes Eindrücken beim Klick. */
+.dock__item:active .dock__icon { --dock-press: 0.94; }
+
+.dock__icon img {
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* Textfallback, wenn eine Icon-Datei fehlt oder das Manifest ausfällt. */
+.dock__text {
+  display: block;
+  max-width: 72px;
+  font-size: 10px; font-weight: 600; line-height: 1.2;
+  text-align: center;
+  color: var(--ink);
+  overflow-wrap: break-word;
+}
+.dock:has(> .dock__text) { padding: 10px 16px; }
+
+/* Trennstrich: dünn, 60 % der Dockhöhe, mittig, mit Luft daneben. */
+.dock__sep {
+  flex: 0 0 auto;
+  width: 1px;
+  height: 32px;           /* ~60 % der 54px-Zelle */
+  margin: 0 6px;
+  align-self: center;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* Schildchen über dem Icon, nur für das Icon unter dem Zeiger. Es liegt
+   außerhalb des skalierten Wrappers und wächst deshalb nicht mit; der
+   Abstand ist so gewählt, dass es über dem auf 1.45 vergrößerten Icon
+   steht. */
+.dock__tip {
+  position: absolute; bottom: calc(100% + 12px); left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 8px; border-radius: 7px;
+  font-size: 11px; line-height: 1.3; white-space: nowrap;
+  /* Umgedreht: Das Dock liegt über dem dunklen Teil des Wallpapers,
+     dort trägt helle Schrift auf dunkler Plakette besser. */
+  color: #fff;
+  background: rgba(28, 28, 30, 0.78);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.18s ease-out;
+}
+/* Spitze nach unten. */
+.dock__tip::after {
+  content: ""; position: absolute; top: 100%; left: 50%;
+  width: 8px; height: 8px;
+  background: inherit;
+  border: inherit; border-top: 0; border-left: 0;
+  transform: translate(-50%, -5px) rotate(45deg);
+}
+.dock__item.is-hovered .dock__tip,
+.dock__item:focus-visible .dock__tip { opacity: 1; }
+
+/* ---------------------------------- Mobile */
+
+/* Das Hochformat-Wallpaper gilt genau dort, wo BEIDES zutrifft: das
+   Mobil-Raster ist aktiv UND der Viewport steht hochkant.
+   - Nur an der Ausrichtung festgemacht, bekäme ein 768er Fenster mit Maus
+     das Hochformat-Bild, obwohl dort die Desktop-Streuung läuft — deren
+     Freihaltezone ist aber auf das Querformat-Bild eingemessen.
+   - Nur am Breakpoint festgemacht, bekäme das Querformat (844x390) ein
+     9:16-Bild und damit einen schmalen Querstreifen daraus.
+   Die Bedingungen spiegeln deshalb den Mobil-Breakpoint, je mit
+   `orientation: portrait` ergänzt. */
+@media (max-width: 760px) and (orientation: portrait),
+       (pointer: coarse) and (max-width: 1024px) and (orientation: portrait),
+       (max-height: 520px) and (orientation: portrait) {
+  :root {
+    --desktop-bg: #ffffff url("assets/wallpaper-mobile.webp") center / cover no-repeat;
+  }
+}
+
+/* Mobil-/Touch-Layout. Die dritte Bedingung ist die Höhe: im Querformat
+   (etwa 844x390) bleiben nach Rand und Dock-Reserve nur ~250 px übrig —
+   zu wenig für 21 gestreute Icons, die Platzierung fand dort für einen
+   Teil keinen Platz mehr. Flache Viewports bekommen deshalb ebenfalls das
+   scrollende Raster, unabhängig von der Breite. */
+@media (max-width: 760px),
+       (pointer: coarse) and (max-width: 1024px),
+       (max-height: 520px) {
+  /* Maße der Icon-Zelle mobil. Dieselbe Streuung wie auf dem Desktop,
+     nur kleiner: Thumbnail-Längsseite 68 statt 92 px, Zelle und
+     Labelbreite entsprechend mit. Die Werte MÜSSEN zu den
+     Mobil-Konstanten in app.js (cfg()) passen. */
+  :root {
+    --icon-w: 114px;
+    --label-w: 110px;
+    --cover-max: 68px;
+    --cover-min: 32px;
+    --dock-h: 96px;
+  }
+
+  /* Nur hier darf die Seite scrollen, und nur SENKRECHT: die Icon-Fläche
+     ist höher als der Viewport (app.js setzt die Höhe), waagerecht wird
+     nie gescrollt. */
+  html, body { height: auto; min-height: 100dvh; overflow-y: auto; overflow-x: hidden; }
+
+  /* Der Hintergrund gehört ab hier auf eine FESTE Ebene statt auf <body>.
+     Mobil wächst der Body auf die volle Scrollhöhe (bei 21 Projekten über
+     1700 px); ein `cover`-Hintergrund darauf würde das Porträt über diese
+     ganze Höhe aufziehen. Die fixierte Ebene deckt stattdessen genau den
+     Sichtbereich ab. `background-attachment: fixed` täte dasselbe, ist auf
+     iOS aber unzuverlässig — deshalb die eigene Ebene.
+     Folge: das Bild STEHT, die Icons wandern beim Scrollen über die
+     Hell-Dunkel-Grenze. Deshalb muss die Label-Plakette unten tragen. */
+  body { background: #fff; }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; z-index: -1;
+    background: var(--desktop-bg);
+    pointer-events: none;
+  }
+
+  /* Das Hochformat-Bild ist oben fast weiß (234) und unten fast schwarz
+     (27), und weil der Hintergrund STEHT, während die Icon-Fläche
+     darüber scrollt, läuft dasselbe Label im Lauf des Scrollens über
+     beides. Die Plakette bleibt trotzdem dezent (0.34 statt 0.82) — was
+     unten trägt, ist der verstärkte helle Textschatten: er folgt den
+     Buchstaben, bleibt über dem hellen oberen Drittel unsichtbar und
+     setzt den Namen über dem Shirt hart ab. */
+  .icon__label {
+    /* 0.45 statt der frueheren 0.82: ueber dem hellen oberen Drittel ist
+       eine weisse Plakette ohnehin fast unsichtbar (Komposit 243 auf
+       Grund 234), sichtbar wird sie nur ueber den dunklen Partien --
+       genau dort, wo sie gebraucht wird. Mehr als 0.45 wuerde ueber den
+       MITTELTOENEN (Shirt, ~115) wieder als Kasten lesen. */
+    background: rgba(255, 255, 255, 0.45);
+    /* Enger, voll deckender weißer Saum DIREKT an den Buchstaben plus ein
+       weicher Hof darüber hinaus. Der Saum ist das eigentliche
+       Lesbarkeitsmittel über dem Shirt: zwischen Glyphe (#1b1d20) und Saum
+       (Weiß) liegt ein Kontrast von etwa 14:1, unabhängig davon, wie
+       dunkel der Grund dahinter ist. Über dem hellen oberen Drittel
+       verschwindet er, weil er dort dieselbe Farbe wie der Grund hat. */
+    text-shadow:
+      0 0 1px rgba(255, 255, 255, 1),
+      0 0 2px rgba(255, 255, 255, 1),
+      0 0 3px rgba(255, 255, 255, 1),
+      0 1px 2px rgba(255, 255, 255, 1),
+      0 0 8px rgba(255, 255, 255, 0.95),
+      0 0 14px rgba(255, 255, 255, 0.85);
+  }
+
+  /* Die Fläche ist jetzt eine echte, absolut positionierte Streufläche
+     wie auf dem Desktop — nur höher als der Viewport. Die Höhe setzt
+     app.js inline auf #icons; `position: relative` macht sie zum
+     Bezugsrahmen der Icon-Positionen. */
+  .desktop { position: relative; inset: auto; padding: 0; }
+  .icons { position: relative; width: 100%; height: auto; }
+
+  /* Einen Punkt kleiner, damit die längsten Titel in der 92 px breiten
+     Plakette weiterhin zwischen Wörtern umbrechen statt mitten im Wort.
+     Weiterhin bis zu DREI Zeilen, nichts wird abgeschnitten. */
+  .icon__label { font-size: 11px; padding: 2px 6px; border-radius: 8px; }
+  .icon { gap: 7px; }
+
+  /* Kein Hover-Wachstum auf Touch — der Grundschatten bleibt. */
+  .icon:hover .icon__thumb, .icon:focus-visible .icon__thumb {
+    transform: none;
+    filter: drop-shadow(0 1px 3.5px rgba(0, 0, 0, 0.30));
+  }
+  /* Der blaue Saum der Auswahl muss den Hover-Rücksetzer überschreiben. */
+  .icon[aria-pressed="true"] .icon__thumb,
+  .icon[aria-pressed="true"]:hover .icon__thumb {
+    filter:
+      drop-shadow( 1.5px 0 0 rgba(2, 88, 208, 0.9))
+      drop-shadow(-1.5px 0 0 rgba(2, 88, 208, 0.9))
+      drop-shadow(0  1.5px 0 rgba(2, 88, 208, 0.9))
+      drop-shadow(0 -1.5px 0 rgba(2, 88, 208, 0.9))
+      drop-shadow(0 1px 3.5px rgba(0, 0, 0, 0.30));
+  }
+
+  /* TREFFERFLÄCHE ------------------------------------------------------
+     Die Zelle bleibt `pointer-events: none` (sonst fangen leere
+     Label-Flächen die Klicks verdeckter Icons ab). Getroffen werden also
+     nur Thumbnail und Labeltext. Die kürzeste Thumbnail-Seite ist mobil
+     32 px — zu klein für einen Finger. Diese unsichtbare Fläche um das
+     Thumbnail bringt jedes Icon auf mindestens 44x44 px, OHNE das Bild
+     zu skalieren. */
+  .icon__thumb::before {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: max(44px, 100%);
+    height: max(44px, 100%);
+    pointer-events: auto;
+  }
+
+  /* Dock: kleinere Kacheln, keine Vergrößerung. */
+  .dock { bottom: 12px; gap: 4px; padding: 5px 7px; }
+  .dock__item { width: 46px; height: 46px; }
+  .dock__icon { transform: none !important; transition: none; }
+  .dock__sep { height: 28px; margin: 0 4px; }
+  .dock__tip { display: none; }
+
+  /* Das FEED-Raster (.feedgrid) bleibt dreispaltig — es ist die Aussage
+     des Formats. Es ist auf 560 px begrenzt; auf einem 390er Handy nimmt
+     es ohnehin die volle Breite, deshalb genügen engere Innenabstände
+     und engere Sheet-Ränder, damit die Kacheln nicht zu Briefmarken
+     werden (bei 390 px bleiben ~119 px je Kachel).
+     .tilegrid ist etwas anderes (lose Dateigruppen, oft ein bis zwei
+     Stück) und darf weiter umbrechen — ein festes Dreierraster würde
+     dort eine einzelne Datei auf ein Drittel schrumpfen.
+     Die DJ-Karten rücken auf zwei Spalten zusammen. */
+  .window__body { padding-left: 12px; padding-right: 12px; }
+  .cardgrid { grid-template-columns: repeat(2, 1fr); }
+  .tilegrid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+
+  /* KEINE festen Kachelhöhen mobil ---------------------------------------
+     Auf dem Desktop ist die Kachel 190 px hoch und das Bild wird darin
+     einbeschrieben; bei 300 px Spaltenbreite geht das auf. Auf einem
+     390er Handy sind die Spalten aber nur ~170 px breit — ein Hochformat
+     (0,71) bräuchte darin 240 px Höhe und wurde in der 150-px-Kachel auf
+     gut die Hälfte zusammengedrückt, weil `.tile` `overflow: hidden`
+     trägt. Mobil entfällt die Höhe deshalb komplett: die Kachel nimmt
+     das natürliche Seitenverhältnis des Bildes an, nichts wird
+     beschnitten und nichts auf Briefmarkengröße gestaucht. */
+  .tilegrid > .tile, .cardgrid > .tile {
+    height: auto;
+    /* Verhältnis aus den Daten (app.js). Steht keines zur Verfügung,
+       bestimmt das sofort geladene Bild die Höhe selbst. */
+    aspect-ratio: var(--tile-ratio, auto);
+  }
+  /* `height: auto` stand hier und war eine Sackgasse: ein noch nicht
+     geladenes `loading="lazy"`-Bild hat damit 0 px Hoehe, schneidet den
+     Viewport also nie, wird deshalb nie geladen und behaelt 0 px Hoehe
+     (gemessen: 7 von 21 Kacheln in "Strunk Cow Theme" blieben dauerhaft
+     leer). Das Seitenverhaeltnis traegt die Kachel ohnehin selbst
+     (--tile-ratio, siehe oben), also darf das Bild sie einfach
+     ausfuellen — `contain` haelt es dabei unbeschnitten. */
+  .tilegrid > .tile img, .cardgrid > .tile img,
+  .tilegrid > .tile video, .cardgrid > .tile video {
+    width: 100%; height: 100%; object-fit: contain; max-height: none;
+  }
+
+  /* Die Ampelknöpfe bleiben optisch 9 px klein — mit dem Daumen trifft
+     man das nicht. Eine unsichtbare 44-px-Fläche darüber macht sie
+     treffbar, ohne das Erscheinungsbild zu ändern. */
+  .light--close { position: relative; }
+  .light--close::after {
+    content: "";
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px; height: 44px;
+  }
+
+  /* Großansicht: Knöpfe auf Daumengröße und deutlich sichtbar, weil sie
+     hier über dem Bild liegen und nicht nur über dem dunklen Grund. */
+  .quicklook { padding: 12px; }
+  .quicklook__close { width: 44px; height: 44px; font-size: 24px; top: 10px; right: 10px; }
+  .quicklook__close, .quicklook__nav {
+    background: rgba(0, 0, 0, 0.55);
+    border-color: rgba(255, 255, 255, 0.55);
+  }
+  .quicklook__nav { width: 44px; height: 44px; font-size: 26px; }
+  .quicklook__nav--prev { left: 8px; }
+  .quicklook__nav--next { right: 8px; }
+
+  /* Fenster als Vollbild-Sheet (SPEC): statt 75vw die ganze Fläche. */
+/* HOEHE: `height: 100%` loest bei einem FIXIERTEN Element auf iOS gegen
+     den grossen (Layout-)Viewport auf — der untere Sheet-Rand lag damit
+     unter Safaris Leiste. `100dvh` meint genau den sichtbaren Bereich,
+     wie bei .quicklook. Deshalb oben/links/rechts einzeln verankert
+     statt `inset: 0`: ein `bottom: 0` wuerde die Hoehe wieder gegen den
+     Layout-Viewport aufziehen und 100dvh aushebeln.
+     MATERIAL: der vollflaechige `backdrop-filter` des Fensters kostete
+     pro Bild einen Vollbild-Durchgang auf der GPU — ueber einer sehr
+     langen Kachelliste sichtbares Ruckeln, bei Deckkraft 0.94 aber
+     praktisch unsichtbar. Mobil daher deckend und ohne Filter; das Dock
+     behaelt seinen Weichzeichner. */
+  .window {
+    position: fixed !important;
+    /* Einzeln und je mit !important — eine `inset`-Kurzschreibweise mit
+       !important würde `bottom` mit derselben Priorität mitsetzen und
+       diese Zeilen aushebeln. */
+    top: 0 !important; left: 0 !important; right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    border-radius: 0;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgb(252, 251, 251);
+  }
+
+  /* Scrollketten unterbrechen: am Ende der Kachelliste bzw. der
+     Grossansicht darf nicht die Seite dahinter weiterscrollen. */
+  .window__body, .quicklook { overscroll-behavior: contain; }
+
+  /* DOCK ----------------------------------------------------------------
+     Die Leiste ist fixiert, die Icon-Flaeche scrollt darunter durch — je
+     nach Scrollstand lag ein Projekt-Icon unter dem Dock und war dort
+     nicht antippbar. Die Platte selbst faengt deshalb keine Ereignisse
+     mehr ab, nur ihre Eintraege; zwischen und neben den Eintraegen gehen
+     Tipps an das Icon darunter.
+     Ausserdem gehoert das Dock mobil UNTER das Vollbild-Sheet
+     (.windows liegt auf z-index 50), nicht darueber. */
+  .dock { pointer-events: none; z-index: 40; }
+  .dock__item { pointer-events: auto; }
+  .window__body { padding-bottom: calc(var(--dock-h) + 24px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock__icon, .dock__tip, .icon__thumb, .icon__thumb::before { transition: none; }
+  /* Keine Vergrößerung bei reduzierter Bewegung. */
+  .dock__icon { transform: none !important; }
+  .window, .window--closing { animation: none; }
+  .quicklook { animation: none; }
+}

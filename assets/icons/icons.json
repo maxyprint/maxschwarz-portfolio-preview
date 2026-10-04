@@ -1,0 +1,19 @@
+{
+  "_hinweis": "Austausch: Datei im selben Ordner durch eine eigene ersetzen, Dateiname beibehalten. SVG wird bevorzugt (skaliert verlustfrei), PNG funktioniert auch - dann die Endung hier anpassen. Nichts am Code noetig.",
+  "dock": [
+    {
+      "gruppe": 1,
+      "datei": "instagram.svg",
+      "label": "Instagram",
+      "aktion": "link",
+      "href": "https://www.instagram.com/maybmax.archive/"
+    },
+    {
+      "gruppe": 1,
+      "datei": "mail.svg",
+      "label": "Mail",
+      "aktion": "link",
+      "href": "mailto:maxschwarz727@icloud.com"
+    }
+  ]
+}
